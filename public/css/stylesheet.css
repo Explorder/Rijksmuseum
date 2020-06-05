@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
 	background-color: #f2f2f2;
 }
@@ -9,12 +8,9 @@ body {
 	text-align: center;
 
 }
-#sketch-holder {
-}
-
 
 #messageRow {
-	width: 70%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	/*margin-top: 10px;*/
@@ -42,49 +38,86 @@ body {
 
 #messageListArea p {
 	font-size: 0.8em;
-=======
-body {
-	background-color: #f2f2f2;
 }
 
-.container-fluid {
-	/*border: 1px solid black;*/
-	background-color: white;
+.column {
+	float: left;
+	width: 575px;
+	padding: 20px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+
+  * {box-sizing: border-box}
+
+  .container {
+	position: relative;
+	width: 400px;
+	max-width: 575px;
+  }
+
+  .image {
+	display: block;
+	width: 400px;
+	height: 300px;
+  }  
+
+  .overlay {
+	position: absolute; 
+	bottom: 0; 
+	background: rgb(0, 0, 0);
+	background: rgba(0, 0, 0, 0.5); /* Black see-through */
+	color: #f1f1f1; 
+	width: 100%;
+	transition: .5s ease;
+	opacity:0;
+	color: white;
+	font-size: 20px;
+	padding: 20px;
 	text-align: center;
+  }
+  
+  .column:hover .overlay {
+	opacity: 1;
+  }
 
-}
-#sketch-holder {
-}
+ #myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+} 
+ 
+  #myUL {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+  }
+  
+  #myUL li a {
+	border: 1px solid #ddd;
+	margin-top: -1px; /* Prevent double borders */
+	background-color: #f6f6f6;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+	display: block
+  }
+  
+  #myUL li a:hover:not(.header) {
+	background-color: #eee;
+  }
 
-
-#messageRow {
-	width: 70%;
-	margin-left: auto;
-	margin-right: auto;
-	/*margin-top: 10px;*/
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-
-#header {
-	padding: 30px;
-}
-
-.no-padding {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-#bannerRow {
-	background-color: black;
-}
-
-#messageListArea {
-	overflow-y: scroll;
-	max-height: 700px;
-}
-
-#messageListArea p {
-	font-size: 0.8em;
->>>>>>> 6e1d5bfeb9baa22c648d675966742ca805bee05f
-}
+  #stealBtn {
+	  margin-top: 20px;
+  }

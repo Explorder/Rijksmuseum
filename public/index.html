@@ -12,7 +12,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Rijks App</title>
+  <title>Rijksmuseum Thief Game</title>
 
   
   <!-- <script defer src="/__/firebase/5.0.4/firebase-app.js"></script> --> <!-- update the version number as needed -->
@@ -25,7 +25,7 @@
 <body>
 
   <div id="header" class="page-header">
-    <div class="text-center h3">Rijksmuseum Boilerplate App</div>
+    <div class="text-center h3">Rijksmuseum Thief Game</div>
   </div>
 
   <div class="container-fluid no-padding"> 
@@ -35,37 +35,84 @@
       </div>
     </div>
   </div>
+
   <div class="container-fluid">
-      Draw Something!
-  <div id="sketch-holder" >
-  </div>
+      <b>The 6 paintings you can steal</b>
+      <div class="row">
+        <div class="column">
+          <div class="container">
+            <img src="https://lh3.googleusercontent.com/J-mxAE7CPu-DXIOx4QKBtb0GC4ud37da1QK7CzbTIDswmvZHXhLm4Tv2-1H3iBXJWAW_bHm7dMl3j5wv_XiWAg55VOM=w500" alt="Image 1" class="image">
+            <div class="overlay">Nachtwacht</div>
+        </div>
+        </div>
+        <div class="column">
+          <div class="container">
+            <img src="https://www.holland.com/upload_mm/4/3/4/2909_fullimage_vermeer%20melkmeisje.jpg.jpg" alt="Image 2" class="image">
+            <div class="overlay">Het Melkmeisje</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Hendrik_Vroom_-_Gevecht_tussen_Hollandse_en_Spaanse_schepen_op_het_Haarlemmermeer_001.JPG/800px-Hendrik_Vroom_-_Gevecht_tussen_Hollandse_en_Spaanse_schepen_op_het_Haarlemmermeer_001.JPG" alt="Image 3" class="image">
+            <div class="overlay">Gevecht tussen Hollandse en Spaanse schepen op het Haarlemmermeer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <div class="container">
+            <img src="https://lh3.ggpht.com/Yh48XePYndRUH9pBR-G986f-dKkg0IE9jFhJlt8y91fXB5X-d6IrRU-CW_Q7HLuHeeCRfYztK6LSqCFCjqeXniiVdUc=w500" alt="Image 4" class="image">
+            <div class="overlay">Gezicht op Olinda</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="container">
+            <img src="https://lh3.googleusercontent.com/aqXgCqxvgXItt7Puc22OF8vbuuSGLiI8xUphPF3Jn_VWFBOcLwR96hBC4aRqAVxd_kGy6G-D2y8vRrTJOTbzcSMisc8=w1000" alt="Image 5" class="image">
+            <div class="overlay">Italiaanse landschap met parasoldennen</div></div>
+          </div>
+        <div class="column">
+          <div class="container">
+            <img src="https://lh3.googleusercontent.com/99G97dfneNVNXVlesr2k54y7sgoVTKUaK1iZdukAJszvZ7jOiukoyKB3Ouo19-pod6QaclptWdbxmSFQkRfJqzWb9ucM=w1000" alt="Image 6" class="image">
+            <div class="overlay">Stilleven met kazen</div>
+          </div>
+        </div>
+      </div>
 </div>
+
+
   <div class="container-fluid"> <!-- Container that spans the width of the page -->
     <div id="messageRow" class="row"> <!-- Row with name/message input and message list. -->
 
       <div id="inputArea" class="col-4"> <!-- Column (col-4 means 40% of width) one of two -->
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+        <div id="inputPaintingName" class="card">
+          <div class="card-header">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Name of the painting that you want to steal</span>
           </div>
-          <input id="author" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <div class="card-body">
+            <input type="text" id="myInput" onkeyup="filterFunction()" placeholder="Search for names.." title="Type in a name">
+          <ul id="myUL">
+            <li><a href="#">Nachtwacht</a></li>
+            <li><a href="#">Het Melkmeisje</a></li>
+            <li><a href="#">Gevecht tussen Hollandse en Spaanse schepen op het Haarlemmermeer</a></li>
+            <li><a href="#">Gezicht op Olinda</a></li>
+            <li><a href="#">Italiaanse landschap met parasoldennen</a></li>
+            <li><a href="#">Stilleven met kazen</a></li>
+          </ul>
+            <button id="stealBtn" type="button" class="btn btn-outline-primary">Steal</button>
+          </div>
         </div>
-
-        <div class="input-group input-group-small mb-3">
-          <textarea id="message" rows="6" cols="70" class="form-control" aria-label="With text area"></textarea>
-        </div>
-        <button id="sendMsgBtn" type="button" class="btn btn-outline-primary">Submit</button>
       </div>
 
 
       <div id="messageListArea" class="col"> <!-- Column of unspecified width -->
         <div id="presmsg" class="card">
           <div class="card-header">
-            Placeholder
+            Instructions for the game
           </div>
           <div class="card-body">
             <blockquote class="blockquote mb-0">
-              <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+              <p>For this game, the objective is to steal the paintings of the Rijksmuseum and not to get caught. If you are caught it's game over. Hover over the painting to show the name of the painting, if you are willing to steal the painting. Write or select the name of the painting on the input to the left. Press steal if you want to steal the selected paintings.</p>
             </blockquote>
           </div>
         </div>
