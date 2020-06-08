@@ -41,8 +41,8 @@ body {
 }
 
 .column {
-	float: left;
-	width: 575px;
+	float: center;
+	width: 625px;
 	padding: 20px;
   }
   
@@ -57,14 +57,14 @@ body {
 
   .container {
 	position: relative;
-	width: 400px;
+	width: 550px;
 	max-width: 575px;
   }
 
   .image {
 	display: block;
-	width: 400px;
-	height: 300px;
+	width: 550px;
+	height: 412.5px;
   }  
 
   .overlay {
