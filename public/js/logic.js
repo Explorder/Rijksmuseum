@@ -49,6 +49,7 @@ function getPainting() {
 
 function placePainting(data){
     for(let i = 0; i < 6; i++) {
-        document.getElementById("image" + i).src = data.artObjects[i].webImage.url;
+        document.getElementById("image" + i).src = data.artObjects[i].webImage.url; // Changes the paiting(image)
+        document.getElementById("tekst" + i).innerHTML = data.artObjects[i].title; // Changes the name
     }
 }
