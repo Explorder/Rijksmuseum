@@ -53,3 +53,29 @@ function placePainting(data){
         document.getElementById("tekst" + i).innerHTML = data.artObjects[i].title; // Changes the name
     }
 }
+for(let i = 0; i < 6; i++) {
+    // Get the modal
+    var modal = document.getElementById("myModal" + i);
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("image" + i);
+    var modalImg = document.getElementById("modalimage" + i);
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[i];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() { 
+    modal.style.display = "none";
+    }
+}
+
+// The code makes uses of modals to show certain hidden information it iterates through the whole list of images to enable the functionality of a modal to every image.
+//Bart als je dit ziet heb ik de plaatjes van 0 tot en met 5 gezet zodat de functie hierboven zal werken, de informatie die we in de modals willen hebben kunnen we zondag
+//bespreken of welke dag ons beide schikt ;)
