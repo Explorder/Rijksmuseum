@@ -1,7 +1,77 @@
-$('#stealBtn').click(exampleAlert); // Collect HTML element with (#) id sendMsgBtn, when click do function exampleAlert
+//Global Variables
+var Gallerij;
+var indiPaitings = [];
+var stolenPaitings = []; 
 
-function exampleAlert() {
-	console.log("Nice");
+//When webpage is opened
+$(document).ready(function() {
+    getPainting();
+ })
+
+// All button presses to there respetive functions
+$('#nextHall').click(getPainting);
+$('#stealBtn').click(steal);
+$('#leaveBtn').click(leave);
+
+function steal() {
+    for(let i = 0; i < 6; i++){
+        if (document.getElementById("box" + i).checked == true) {
+            for(let j = 0; j < stolenPaitings.length; j++){
+                if(Gallerij.artObjects[i].title == stolenPaitings[j]) {
+                    alert("You are trying to steal a painting you have already stolen")
+                    return;
+                }
+            }
+            if(check() == true) {
+                var li = document.createElement("li");
+                var namePainting = document.createTextNode(Gallerij.artObjects[i].title);
+                li.appendChild(namePainting)
+                document.getElementById("takenList").appendChild(li);
+                stolenPaitings.push(Gallerij.artObjects[i].title + "\n");
+            }
+            else {
+                alert("You got caught\nYou have to start again");
+                document.getElementById("takenList").innerHTML = "";
+                stolenPaitings = [];
+                return
+            }
+        }
+    }
+}
+
+function check() {
+    var check = Math.random()* 100
+    console.log(check)
+    var  modifier;
+    if(check > 80) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+function leave() {
+    if(check() == false) {
+        alert("You got caught on your way out \nYou have to start over again")
+        document.getElementById("takenList").innerHTML = "";
+        stolenPaitings = [];
+    }
+    else {
+        sPaintings = stolenPaitings.toString().replace(",", "");
+        alert("The paintings that are stolen are: \n" + sPaintings);
+        document.getElementById("takenList").innerHTML = "";
+        stolenPaitings = [];
+    }
+    // for(let i = 0; i < 6; i++) {
+    //     //console.log(Gallerij)
+    //     $.get("https://www.rijksmuseum.nl/api/nl/collection/" + Gallerij.artObjects[i].objectNumber + "?key=gxOqGef4", function(schilderij) {
+    //         console.log("Hoogte: " + schilderij.artObject.dimensions[0].value)
+    //         console.log("Breedte: " + schilderij.artObject.dimensions[1].value)
+    //     })
+    // }
+    // //alert(" You have left the museum")
 }
 
 function filterFunction() {
@@ -22,35 +92,45 @@ function filterFunction() {
 }
 // The above function is from w3c gxOqGef4
 
-$(document).ready(function() {
-   getPainting();
 
-})
+
 function getPainting() {
     var paitingsFound = true;
     var pageNumber = Math.floor((Math.random() * 792));
     console.log(pageNumber);
-    $.get("https://www.rijksmuseum.nl/api/nl/collection?key=gxOqGef4&type=schilderij&ps=6&p=" + pageNumber, function(data) {
+    $.get("https://www.rijksmuseum.nl/api/nl/collection?key=gxOqGef4&type=schilderij&ps=6&p=" + pageNumber , function(data) {
+    //$.get("https://www.rijksmuseum.nl/api/nl/collection?key=gxOqGef4&type=schilderij&ps=6&p=358", function(data) {
         console.log(data);
         for(let i = 0; i < 6; i++) {
             if(data.artObjects[i].hasImage == false) {
-                paitingsFound = false;
                 getPainting();
-                break;
+                return;
             }
         }
-        if(paitingsFound == true){
-            placePainting(data)
-        }    
+            Gallerij = data;
+            // indiPaitings = [];
+            // for(let i = 0; i < 6; i++) {
+            //     $.get("https://www.rijksmuseum.nl/api/nl/collection/" + Gallerij.artObjects[i].objectNumber + "?key=gxOqGef4", function(schilderij) {
+            //         console.log(schilderij)
+            //         indiPaitings.push(schilderij);
+            //     })
+            // }
+            // console.log("Hoogte: " + indiPaitings[3].artObject.dimensions[0].value)
+            // console.log("Breedte: " + indiPaitings[3].artObject.dimensions[1].value) 
+            placePainting()   
     })
+
 }
 //The above fuction generates a group of 6 paitings that all have an img link.
-//page withouit images 593.
+// //page withouit images 593.
+// console.log("Hoogte: " + indiPaitings[i].artObject.dimensions[0].value)
+// console.log("Breedte: " + indiPaitings[i].artObject.dimensions[1].value)
 
-function placePainting(data){
+function placePainting(){
     for(let i = 0; i < 6; i++) {
-        document.getElementById("image" + i).src = data.artObjects[i].webImage.url; // Changes the paiting(image)
-        document.getElementById("tekst" + i).innerHTML = data.artObjects[i].title; // Changes the name
+        document.getElementById("image" + i).src = Gallerij.artObjects[i].webImage.url; // Changes the paiting(image)
+        document.getElementById("tekst" + i).innerHTML = Gallerij.artObjects[i].title; // Changes the name
+        document.getElementById("boxTekst" + i).innerHTML = Gallerij.artObjects[i].title;
     }
 }
 for(let i = 0; i < 6; i++) {
@@ -60,11 +140,11 @@ for(let i = 0; i < 6; i++) {
     // Get the image and insert it inside the modal - use its "alt" text as a caption
     var img = document.getElementById("image" + i);
     var modalImg = document.getElementById("modalimage" + i);
-    var captionText = document.getElementById("caption");
+    var captionText = document.getElementById("caption" + i);
     img.onclick = function(){
     modal.style.display = "block";
     modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
+    captionText.innerHTML = this.alt ;
     }
 
     // Get the <span> element that closes the modal
