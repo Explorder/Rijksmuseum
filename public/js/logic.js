@@ -60,7 +60,7 @@ function leave() {
     }
     else {
         sPaintings = stolenPaitings.toString().replace(",", "");
-        alert("The paintings that are stolen are: \n" + sPaintings);
+        alert("The paintings that you got away with are: \n" + sPaintings);
         document.getElementById("takenList").innerHTML = "";
         stolenPaitings = [];
     }
