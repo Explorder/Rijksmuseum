@@ -17,7 +17,7 @@ function steal() {
     for(let i = 0; i < 6; i++){
         if (document.getElementById("box" + i).checked == true) {
             for(let j = 0; j < stolenPaitings.length; j++){
-                if(Gallerij.artObjects[i].title == stolenPaitings[j]) {
+                if((Gallerij.artObjects[i].title + "\n") == stolenPaitings[j]) {
                     alert("You are trying to steal a painting you have already stolen")
                     return;
                 }
