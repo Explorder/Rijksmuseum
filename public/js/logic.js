@@ -18,7 +18,7 @@ function steal() {
     for(let i = 0; i < 6; i++){
         if (document.getElementById("box" + i).checked == true) {
             for(let j = 0; j < stolenPaitings.length; j++){
-                if((sixPaintings.artObjects[i].title + "\n") == stolenPaitings[j]) {
+                if((sixPaintings.artObjects[i].title) == stolenPaitings[j]) {
                     alert("You are trying to steal a painting you have already stolen")
                     return;
                 }
@@ -28,15 +28,43 @@ function steal() {
                 var namePainting = document.createTextNode(sixPaintings.artObjects[i].title);
                 li.appendChild(namePainting)
                 document.getElementById("takenList").appendChild(li);
-                stolenPaitings.push(sixPaintings.artObjects[i].title + "\n");
+                stolenPaitings.push(sixPaintings.artObjects[i].title);
             }
             else {
-                alert("You got caught\nYou have to start again");
-                document.getElementById("takenList").innerHTML = "";
-                stolenPaitings = [];
-                return
+                if(stolenPaitings.length == 0) {
+                    endScreen("https://cdn.discordapp.com/attachments/700659644762423327/723868249032360066/unknown.png", "They caught you but you did not have any paintings yet <br> Try Again")
+                    reset();
+                }
+                else {
+                    endScreen("https://thumbs.dreamstime.com/b/cartoon-prisoner-behind-bars-10416629.jpg", "You got caught with paintings on you <br> Try again")
+                    reset();
+                    return
+                }
             }
         }
+    }
+}
+
+function leave() {
+    if(check(7) == false) {
+        endScreen("https://thumbs.dreamstime.com/b/cartoon-prisoner-behind-bars-10416629.jpg", "You got caught with paintings on you trying to leave <br> Try again")
+        reset();
+    }
+    else {
+        var sPaintings = "";
+        for(let j = 0; j < stolenPaitings.length; j++) {
+            if(j == (stolenPaitings.length - 2)) {
+                sPaintings += (stolenPaitings[j] + " and ");
+            }
+            else if (j == (stolenPaitings.length - 1)) {
+                sPaintings += (stolenPaitings[j] + ".");
+            }
+            else {
+                sPaintings += (stolenPaitings[j] + ", ");
+            }
+        }
+        endScreen("https://cdn.winsightmedia.com/platform/files/public/fsd/main/articles/cartoon-thief.jpg", "You got away with these paintings: " + sPaintings + "<br> If you want to play again click anywhere on the screen.")
+        reset();
     }
 }
 
@@ -65,7 +93,6 @@ function check(i) {
         }
     }
     modifier += stolenPaitings.length;
-    console.log(check + modifier);
     if(check + modifier > 90) {
         return false;
     }
@@ -75,28 +102,15 @@ function check(i) {
 }
 
 
-function leave() {
-    if(check(7) == false) {
-        alert("You got caught on your way out \nYou have to start over again")
-        document.getElementById("takenList").innerHTML = "";
-        stolenPaitings = [];
-    }
-    else {
-        sPaintings = stolenPaitings.toString().replace(",", "");
-        console.log(sPaintings)
-        alert("The paintings that you got away with are: \n" + sPaintings);
-        document.getElementById("takenList").innerHTML = "";
-        stolenPaitings = [];
-    }
-}
 
 // Code = gxOqGef4
 
 function getPainting() {
     individualPaitings = [];
     sixPaintings = [];
+    document.getElementById("hiddenModal").style.display = "none";
+    resetBoxes();
     var pageNumber = Math.floor((Math.random() * 792));
-    console.log(pageNumber);
     getSixPaintings("https://www.rijksmuseum.nl/api/nl/collection?key=gxOqGef4&type=schilderij&ps=6&p=" + pageNumber);
 }
 
@@ -139,6 +153,18 @@ for(let i = 0; i < 6; i++) {
     }
 }
 
+function reset() {
+    document.getElementById("takenList").innerHTML = "";
+    stolenPaitings = [];
+    resetBoxes();
+}
+
+function resetBoxes() {
+    for(let i = 0; i < 6; i++){
+        document.getElementById("box" + i).checked = false;
+    }
+}
+
 function getSixPaintings(url) {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("GET", url, true);
@@ -178,18 +204,30 @@ function getIndividualPaintings(number) {
                 getIndividualPaintings(number)
             }
             else {
-                test2()
                 placePainting();
             }
         }
     }
 }
 
-function Test() {
-    console.log("test")
+function endScreen(link, text) {
+    document.getElementById("hiddenModal").style.display = "block";
+    var modal = document.getElementById("myModalHidden");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("imageHidden");
+    var modalImg = document.getElementById("modalimageHidden");
+    var captionText = document.getElementById("captionHidden");
+    modal.style.display = "block";
+    modalImg.src = link;
+    captionText.innerHTML = text;
+    captionText.style.color = 'white';
 }
-function test2() {
-    console.log(individualPaitings)
+window.onclick = function(event) {
+    if (event.target == myModalHidden) {
+        myModalHidden.style.display = "none";
+        document.getElementById("hiddenModal").style.display = "none";
+    }
 }
 
 // The code makes uses of modals to show certain hidden information it iterates through the whole list of images to enable the functionality of a modal to every image.
