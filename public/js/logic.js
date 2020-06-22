@@ -46,25 +46,31 @@ function steal() {
 }
 
 function leave() {
-    if(check(7) == false) {
-        endScreen("https://thumbs.dreamstime.com/b/cartoon-prisoner-behind-bars-10416629.jpg", "You got caught with paintings on you trying to leave <br> Try again")
+    if (stolenPaitings.length == 0) {
+        endScreen("https://cdn.discordapp.com/attachments/700659644762423327/723868249032360066/unknown.png", "You Left the museum without taking any paintings <br> If you want to play again click anywhere on the screen")
         reset();
     }
     else {
-        var sPaintings = "";
-        for(let j = 0; j < stolenPaitings.length; j++) {
-            if(j == (stolenPaitings.length - 2)) {
-                sPaintings += (stolenPaitings[j] + " and ");
-            }
-            else if (j == (stolenPaitings.length - 1)) {
-                sPaintings += (stolenPaitings[j] + ".");
-            }
-            else {
-                sPaintings += (stolenPaitings[j] + ", ");
-            }
+        if(check(7) == false) {
+            endScreen("https://thumbs.dreamstime.com/b/cartoon-prisoner-behind-bars-10416629.jpg", "You got caught with paintings on you trying to leave <br> Try again")
+            reset();
         }
-        endScreen("https://cdn.winsightmedia.com/platform/files/public/fsd/main/articles/cartoon-thief.jpg", "You got away with these paintings: " + sPaintings + "<br> If you want to play again click anywhere on the screen.")
-        reset();
+        else {
+            var sPaintings = "";
+            for(let j = 0; j < stolenPaitings.length; j++) {
+                if(j == (stolenPaitings.length - 2)) {
+                    sPaintings += (stolenPaitings[j] + " and ");
+                }
+                else if (j == (stolenPaitings.length - 1)) {
+                    sPaintings += (stolenPaitings[j] + ".");
+                }
+                else {
+                    sPaintings += (stolenPaitings[j] + ", ");
+                }
+            }
+            endScreen("https://cdn.winsightmedia.com/platform/files/public/fsd/main/articles/cartoon-thief.jpg", "You got away with these paintings: " + sPaintings + "<br> If you want to play again click anywhere on the screen.")
+            reset();
+        }
     }
 }
 
