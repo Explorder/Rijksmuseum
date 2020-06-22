@@ -27,9 +27,6 @@ body {
   padding-right: 0;
 }
 
-#bannerRow {
-	background-color: black;
-}
 
 #messageListArea {
 	overflow-y: scroll;
@@ -39,21 +36,6 @@ body {
 #messageListArea p {
 	font-size: 0.8em;
 }
-
-.column {
-	float: center;
-	width: 33%;
-	padding: 5px;
-  }
-  
-  /* Clearfix (clear floats) */
-  .row::after {
-	content: "";
-	clear: both;
-	display: table;
-  }
-
-  * {box-sizing: border-box}
 
   .container {
 	position: relative;
@@ -198,4 +180,35 @@ body {
 	.modal-content {
 	  width: 100%;
 	}
+  }
+
+  td:hover .overlay {
+	opacity: 1;
+  }
+
+  .center {
+	margin-left: auto;
+	margin-right: auto;
+  } 
+
+  th, td {
+	padding: 20px;
+  }
+
+  th {
+	  font-size: 30px;
+  }
+
+  .container0 {
+	position: relative;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+  }
+  
+  .centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
   }

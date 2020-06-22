@@ -34,7 +34,7 @@ function steal() {
             }
             else {
                 if(stolenPaitings.length == 0) {
-                    endScreen("https://cdn.discordapp.com/attachments/700659644762423327/723868249032360066/unknown.png", "They caught you but you did not have any paintings yet <br> Try Again")
+                    endScreen("https://i.kym-cdn.com/photos/images/original/000/535/611/d8d.png", "They caught you but you did not have any paintings yet <br> Try Again")
                     reset();
                     return
                 }
@@ -54,7 +54,7 @@ function steal() {
 
 function leave() {
     if (stolenPaitings.length == 0) {
-        endScreen("https://cdn.discordapp.com/attachments/700659644762423327/723868249032360066/unknown.png", "You Left the museum without taking any paintings <br> If you want to play again click anywhere on the screen")
+        endScreen("https://i.kym-cdn.com/photos/images/original/000/535/611/d8d.png", "You Left the museum without taking any paintings <br> If you want to play again click anywhere on the screen")
         reset();
     }
     else {
