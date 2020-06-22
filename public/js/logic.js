@@ -15,8 +15,10 @@ $('#leaveBtn').click(leave);
 
 
 function steal() {
+    var oneBoxCheck = false;
     for(let i = 0; i < 6; i++){
         if (document.getElementById("box" + i).checked == true) {
+            oneBoxCheck = true;
             for(let j = 0; j < stolenPaitings.length; j++){
                 if((sixPaintings.artObjects[i].title) == stolenPaitings[j]) {
                     alert("You are trying to steal a painting you have already stolen")
@@ -34,6 +36,7 @@ function steal() {
                 if(stolenPaitings.length == 0) {
                     endScreen("https://cdn.discordapp.com/attachments/700659644762423327/723868249032360066/unknown.png", "They caught you but you did not have any paintings yet <br> Try Again")
                     reset();
+                    return
                 }
                 else {
                     endScreen("https://thumbs.dreamstime.com/b/cartoon-prisoner-behind-bars-10416629.jpg", "You got caught with paintings on you <br> Try again")
@@ -43,6 +46,10 @@ function steal() {
             }
         }
     }
+    if(oneBoxCheck == false) {
+        alert("You must select a painting to steal")
+    }
+    resetBoxes();
 }
 
 function leave() {
@@ -58,17 +65,9 @@ function leave() {
         else {
             var sPaintings = "";
             for(let j = 0; j < stolenPaitings.length; j++) {
-                if(j == (stolenPaitings.length - 2)) {
-                    sPaintings += (stolenPaitings[j] + " and ");
-                }
-                else if (j == (stolenPaitings.length - 1)) {
-                    sPaintings += (stolenPaitings[j] + ".");
-                }
-                else {
-                    sPaintings += (stolenPaitings[j] + ", ");
-                }
+                sPaintings += (stolenPaitings[j] + ".<br>");
             }
-            endScreen("https://cdn.winsightmedia.com/platform/files/public/fsd/main/articles/cartoon-thief.jpg", "You got away with these paintings: " + sPaintings + "<br> If you want to play again click anywhere on the screen.")
+            endScreen("https://cdn.winsightmedia.com/platform/files/public/fsd/main/articles/cartoon-thief.jpg", "You got away with these paintings: <br> " + sPaintings + " <br> If you want to play again click anywhere on the screen.")
             reset();
         }
     }
@@ -98,7 +97,7 @@ function check(i) {
             modifier = 10;
         }
     }
-    modifier += stolenPaitings.length;
+    modifier += (1.5 * stolenPaitings.length);
     if(check + modifier > 90) {
         return false;
     }
