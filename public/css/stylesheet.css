@@ -200,6 +200,10 @@ body {
   }
 
   .container0 {
+	width: 100%;
+	height: 700px;
+	background-image: url('https://www.fabrique.nl/media/original_images/Rijks_02.png.2984x1412_q83ss0_format-jpg_upscale.png');
+	background-size: 100% 100%;
 	position: relative;
 	text-align: center;
 	color: white;
