@@ -52,6 +52,8 @@ function steal() {
     resetBoxes();
 }
 
+// This is the function when you press the steal button
+
 function leave() {
     if (stolenPaitings.length == 0) {
         endScreen("https://i.kym-cdn.com/photos/images/original/000/535/611/d8d.png", "You Left the museum without taking any paintings <br> If you want to play again click anywhere on the screen")
@@ -72,6 +74,8 @@ function leave() {
         }
     }
 }
+
+// This is the function that is triggerd when you press the leave button
 
 function check(i) {
     let check = Math.random()* 100
@@ -106,9 +110,7 @@ function check(i) {
     }
 }
 
-
-
-// Code = gxOqGef4
+// This function is the check if you get caught or not
 
 function getPainting() {
     individualPaitings = [];
@@ -127,10 +129,7 @@ function placePainting(){
     }
 }
 for(let i = 0; i < 6; i++) {
-    // Get the modal
     var modal = document.getElementById("myModal" + i);
-
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
     var img = document.getElementById("image" + i);
     var modalImg = document.getElementById("modalimage" + i);
     var captionText = document.getElementById("caption" + i);
@@ -147,16 +146,15 @@ for(let i = 0; i < 6; i++) {
                             "<li> Dimensions of the painting:  " + dimensions + "</li></ul>";
     captionText.style.color = 'white';
     }
-
-
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[i];
-
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function() { 
     modal.style.display = "none";
     }
 }
+
+// The code makes uses of modals to show certain hidden information it iterates through the whole list of images to enable the functionality of a modal to every image.
+// This code was taken from W3Schools from Modals
+
 
 function reset() {
     document.getElementById("takenList").innerHTML = "";
@@ -167,6 +165,26 @@ function reset() {
 function resetBoxes() {
     for(let i = 0; i < 6; i++){
         document.getElementById("box" + i).checked = false;
+    }
+}
+
+function endScreen(link, text) {
+    document.getElementById("hiddenModal").style.display = "block";
+    var modal = document.getElementById("myModalHidden");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("imageHidden");
+    var modalImg = document.getElementById("modalimageHidden");
+    var captionText = document.getElementById("captionHidden");
+    modal.style.display = "block";
+    modalImg.src = link;
+    captionText.innerHTML = text;
+    captionText.style.color = 'white';
+}
+window.onclick = function(event) {
+    if (event.target == myModalHidden) {
+        myModalHidden.style.display = "none";
+        document.getElementById("hiddenModal").style.display = "none";
     }
 }
 
@@ -189,8 +207,10 @@ function getSixPaintings(url) {
             sixPaintings = json_file;
             getIndividualPaintings(0);
 		}
-	}
+    }
 }
+
+// This function gets 6 painting from a random page number and checks if they all have a imgage link
 
 function getIndividualPaintings(number) {
     var url = "https://www.rijksmuseum.nl/api/nl/collection/" + sixPaintings.artObjects[number].objectNumber + "?key=gxOqGef4"
@@ -215,26 +235,4 @@ function getIndividualPaintings(number) {
     }
 }
 
-function endScreen(link, text) {
-    document.getElementById("hiddenModal").style.display = "block";
-    var modal = document.getElementById("myModalHidden");
-
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var img = document.getElementById("imageHidden");
-    var modalImg = document.getElementById("modalimageHidden");
-    var captionText = document.getElementById("captionHidden");
-    modal.style.display = "block";
-    modalImg.src = link;
-    captionText.innerHTML = text;
-    captionText.style.color = 'white';
-}
-window.onclick = function(event) {
-    if (event.target == myModalHidden) {
-        myModalHidden.style.display = "none";
-        document.getElementById("hiddenModal").style.display = "none";
-    }
-}
-
-// The code makes uses of modals to show certain hidden information it iterates through the whole list of images to enable the functionality of a modal to every image.
-//Bart als je dit ziet heb ik de plaatjes van 0 tot en met 5 gezet zodat de functie hierboven zal werken, de informatie die we in de modals willen hebben kunnen we zondag
-//bespreken of welke dag ons beide schikt ;)
+// This function gets the detailed data from the individual paintings gotten from the function getSixPaintings

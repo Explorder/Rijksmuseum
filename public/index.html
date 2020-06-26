@@ -2,23 +2,14 @@
 <html>
 <head>
 
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>  -->             <!-- Firebase CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!-- jQuery CDN -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">                      <!-- Bootstrap CSS -->
   <link rel="stylesheet" type="text/css" href="css/stylesheet.css">                         <!-- Custom CSS -->
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>  -->        <!-- P5.JS library -->
-  <!-- <s>cript src="js/sketch.js"></script> -->                                                     <!-- Sketch.js, the p5.js file. -->
-
+ 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Thievery</title>
-
-  
-  <!-- <script defer src="/__/firebase/5.0.4/firebase-app.js"></script> --> <!-- update the version number as needed -->
-  <!-- <script defer src="/__/firebase/5.0.4/firebase-database.js"></script> --> <!-- include only the Firebase features as you need -->
- <!--  <script defer src="/__/firebase/init.js"></script> --> <!-- initialize the SDK after all desired features are loaded -->
-
   <link rel="icon" type="image/png" href="graphics/fav.png">
 
 </head>
@@ -31,8 +22,8 @@
   </div>
 
   <div class="container-fluid">
-    <div id="messageRow" class="row"> <!-- Row with name/message input and message list. -->
-      <div id="messageListArea" class="col"> <!-- Column of unspecified width -->
+    <div id="messageRow" class="row">
+      <div id="messageListArea" class="col">
         <div id="presmsg" class="card">
           <div class="card-header">
             Instructions for the game
@@ -60,13 +51,9 @@
             <div class="container">
               <img id = "image0" src="" alt="Image 0" class="image">
               <div id = "tekst0" class="overlay"></div>
-              <!-- The Modal -->
               <div id="myModal0" class="modal">
-                <!-- The Close Button -->
                 <span class="close">&times;</span>
-                <!-- Modal Content (The Image) -->
                 <img class="modal-content" id="modalimage0">
-                <!-- Modal Caption (Image Text) -->
                 <div id="caption0"></div>
               </div>
             </div>
@@ -75,13 +62,9 @@
             <div class="container">
               <img id = "image1" src="" alt="Image 1" class="image">
               <div id = "tekst1" class="overlay"></div>
-              <!-- The Modal -->
               <div id="myModal1" class="modal">
-                <!-- The Close Button -->
                 <span class="close">&times;</span>
-                <!-- Modal Content (The Image) -->
                 <img class="modal-content" id="modalimage1">
-                <!-- Modal Caption (Image Text) -->
                 <div id="caption1"></div>
               </div>
             </div>
@@ -90,13 +73,9 @@
             <div class="container">
               <img id = "image2" src="" alt="Image 2" class="image">
               <div id = "tekst2" class="overlay"></div>
-              <!-- The Modal -->
               <div id="myModal2" class="modal">
-                <!-- The Close Button -->
                 <span class="close">&times;</span>
-                <!-- Modal Content (The Image) -->
                 <img class="modal-content" id="modalimage2">
-                <!-- Modal Caption (Image Text) -->
                 <div id="caption2"></div>
               </div>
             </div>
@@ -107,13 +86,9 @@
             <div class="container">
               <img id = "image3" src="" alt="Image 3" class="image">
               <div id = "tekst3" class="overlay"></div>
-              <!-- The Modal -->
               <div id="myModal3" class="modal">
-                <!-- The Close Button -->
                 <span class="close">&times;</span>
-                <!-- Modal Content (The Image) -->
                 <img class="modal-content" id="modalimage3">
-                <!-- Modal Caption (Image Text) -->
                 <div id="caption3"></div>
               </div>
             </div>
@@ -122,13 +97,9 @@
             <div class="container">
               <img id = "image4" src="" alt="Image 4" class="image">
               <div id = "tekst4" class="overlay"></div>
-              <!-- The Modal -->
               <div id="myModal4" class="modal">
-                <!-- The Close Button -->
                 <span class="close">&times;</span>
-                <!-- Modal Content (The Image) -->
                 <img class="modal-content" id="modalimage4">
-                <!-- Modal Caption (Image Text) -->
                 <div id="caption4"></div>
               </div>
             </div>
@@ -137,13 +108,9 @@
             <div class="container">
               <img id = "image5" src="" alt="Image 5" class="image">
               <div id = "tekst5" class="overlay"></div>
-              <!-- The Modal -->
               <div id="myModal5" class="modal">
-                <!-- The Close Button -->
                 <span class="close">&times;</span>
-                <!-- Modal Content (The Image) -->
                 <img class="modal-content" id="modalimage5">
-                <!-- Modal Caption (Image Text) -->
                 <div id="caption5"></div>
               </div>
             </div>
@@ -151,19 +118,18 @@
         </tr>
       </table>
   </div>
+                <!-- The frame work for the modals above has been taken from W3Schools -->
+  <div class="container-fluid">
+    <div id="messageRow" class="row">
 
-  <div class="container-fluid"> <!-- Container that spans the width of the page -->
-    <div id="messageRow" class="row"> <!-- Row with name/message input and message list. -->
-
-      <div id="inputArea" class="col-4"> <!-- Column (col-4 means 40% of width) one of two -->
+      <div id="inputArea" class="col-4">
         <div id="inputPaintingName" class="card">
           <div class="card-header">
             <button id="nextHall" type="button" class="btn btn-outline-primary">Next Hall</button><br><br>
             <span class="input-group-text" id="inputGroup-sizing-sm">Names of the painting that you want to steal</span>
           </div>
           <div class="card-body">
-            <!--<input type="text" id="myInput" onkeyup="filterFunction()" placeholder="Search for names.." title="Type in a name">-->
-          <ul id="myUL">
+            <ul id="myUL">
             <li><div id = "boxTekst0"></div><input type = "checkbox" id = "box0"></li>
             <li><div id = "boxTekst1"></div><input type = "checkbox" id = "box1"></li>
             <li><div id = "boxTekst2"></div><input type = "checkbox" id = "box2"></li>
@@ -177,7 +143,7 @@
         </div>
       </div>
 
-      <div id="messageListArea" class="col"> <!-- Column of unspecified width -->
+      <div id="messageListArea" class="col">
         <div id="presmsg" class="card">
           <div class="card-header">
             Paintings you have stolen:
@@ -195,11 +161,8 @@
     <div id = "hiddenModal">            
       <img id = "imageHidden" src="" alt="Image Hidden" class="image">
       <div id = "tekstHidden" class="overlay"></div>
-      <!-- The Modal -->
       <div id="myModalHidden" class="modal">
-        <!-- Modal Content (The Image) -->
         <img class="modal-content" id="modalimageHidden">
-        <!-- Modal Caption (Image Text) -->
         <div id="captionHidden"></div>
     </div>
   </div>
